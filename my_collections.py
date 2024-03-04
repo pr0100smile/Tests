@@ -14,7 +14,7 @@ def uniq_names(mentors):
         name = mentor.split()[0]
         all_names_list.append(name)
     # Делаем так, чтобы остались только уникальные имена (без повторений)
-    unique_names = list(set(all_names_list))
+    unique_names = set(all_names_list)
 
     # Теперь необходимо отсортировать имена в алфавитном порядке, используя sorted() для списка
     all_names_sorted = sorted(unique_names)
@@ -32,7 +32,7 @@ def top3_uniq_names(mentors):
         all_names_list.append(name)
 
     # Уникальные имена будут в unique_names
-    unique_names = list(set(all_names_list))
+    unique_names = set(all_names_list)
 
     # Подсчёт встречаемости каждого имени через list.count()
     popular = []
@@ -42,9 +42,8 @@ def top3_uniq_names(mentors):
     popular.sort(key=lambda x: x[1], reverse=True)
 
     # Получаем топ-3 часто встречающихся имён из списка popular
-    top_3 = popular[0:3]
-    for top_3_final in top_3:
-        top_ = [(f"{top_3_final[0]}: {top_3_final[1]} раз(а)") for top_3_final in top_3]
+    top_3 = popular[0: 3]
+    top_ = [f"{str(i[0])}: {str(i[1])} раз(а)" for i in top_3]
     return ", ".join(top_)
 
 
@@ -56,7 +55,7 @@ def sup_names(mentors):
         for name in m:
             course_names.append(name.split()[0])
         # Код, который добавляет списки имён в общий список mentors_names:
-        mentors_names.append(sorted(course_names))
+        mentors_names.append(course_names)
 
     # Храним здесь пары курсов, в которых есть совпавшие имена
     pairs = []
@@ -79,7 +78,7 @@ def sup_names(mentors):
                     # Отсортируем имена по алфавиту, используя sorted() для списка
                     all_names_sorted = sorted(intersection_set)
                     # Конструкция вывода результата, используя string.join()
-                    list_mentors.append(f"На курсах '{courses[id1]}' и '{courses[id2]}' преподают: {', '.join(str(i) for i in all_names_sorted)}\n")
+                    list_mentors.append(f"На курсах '{courses[id1]}' и '{courses[id2]}' преподают: {', '.join(all_names_sorted)}\n")
     return f'{list_mentors[0]}{list_mentors[1]}{list_mentors[2]}{list_mentors[3]}'
 
 

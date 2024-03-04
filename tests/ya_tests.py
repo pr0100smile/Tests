@@ -1,10 +1,9 @@
-import unittest
-
+from unittest import TestCase
 from ya_folder import create_folder, folder_info
 
 FOLDERNAME = 'folder_test'
 
-class TestFolderYa(unittest.TestCase):
+class TestFolderYa(TestCase):
     def test_create_folder(self):
         result = create_folder(FOLDERNAME)
         self.assertEqual(result == 201, f'Результат: {result}')
